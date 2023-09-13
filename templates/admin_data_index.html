@@ -1,0 +1,144 @@
+<html>
+    <head>
+        <title>Doctor</title>
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/dashboard_static.css')}}">
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="heading">
+                <div class="logo">
+                    <img src="static/images/white_logo_crop.jpg"  class="mini_logo">
+                </div>
+
+                <div class="top_navigation">
+                    <a href="{{ url_for('home_page')}}" class="about_top">About</a>
+                    <a href="#Research" class="about_top">{{session.user}}Research</a>
+    
+                    {% if 'user' in session %}
+                        <a href="{{ url_for('check_up')}}" class="about_top">Checkup</a>
+                        <a href="{{ url_for('doctor')}}" class="about_top">Doctor</a>
+                    {% elif 'admin' in session %}
+                        <a href="{{ url_for('check_up')}}" class="about_top">Checkup</a>
+                        <a href="{{ url_for('doctor')}}" class="about_top">Doctor</a>
+                        <a href="{{ url_for('dashboard')}}" class="about_top">Dashboard</a>
+                    {% endif %}
+                </div>
+
+                <div class="login_logout">
+                    <div class="login_header">
+                        {% if 'user' not in session and 'admin' not in session%}
+                            <a href="{{ url_for('user_type')}}">Login</a>
+                        {% endif %}
+                    </div>
+                    <div class="sign_up_header">
+                        <div class="sign_up_center">
+                            {% if 'user' not in session and 'admin' not in session %}
+                                <a href="{{ url_for('sign_up') }}">Sign up &#8599</a>
+                            {% else %}
+                                <a href="{{ url_for('log_out') }}">Log out &#8599</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main_content">
+                <div class="left_content">
+                    <div class="logo_content">
+                        <div class="main_logo_second">
+                            <img class="mini_logo" src="static/images/dashboard.png">
+                        </div>
+                        <div class="page_name">
+                            <h1>Dashboard</h1>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="admin_tabs">
+                        <div class="admin_container">
+                            <div class="small_img">
+                                <img class="right_img" src="static/images/customer.png">
+                            </div>
+                            <div class="small_text">
+                                <a href="#User">User</a>
+                            </div>
+                        </div>
+
+                        <div class="admin_container">
+                            <div class="small_img">
+                                <img class="right_img" src="static/images/data.png">
+                            </div>
+                            <div class="small_text">
+                                <a href="#Data">Data</a>
+                            </div>
+                        </div>
+
+                        <div class="admin_container">
+                            <div class="small_img">
+                                <img class="right_img" src="static/images/admin.png">
+                            </div>
+                            <div class="small_text">
+                                <a href="{{ url_for('admin_data')}}">Admin</a>
+                            </div>
+                        </div>
+
+                        <div class="admin_container">
+                            <div class="small_img">
+                                <img class="right_img" src="static/images/doctor.png">
+                            </div>
+                            <div class="small_text">
+                                <a href="#Doctor">Doctor</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right_content">
+                    <div class="main_content_right">
+                        <div class="upper_content">
+                            <h1>Manage Admin</h1>
+                            <button>Add Admin</button>
+                        </div>
+
+                        <div class="lower_content">
+                            <div class="table_update">
+                                Update
+                            </div>
+                            <div class="table_content">
+                                <table class="table">
+                                    <tr clas="table__header">
+                                        <th class="table__cell">Admin_id</th>
+                                        <th>Name</th>
+                                        <th>Password</th>
+                                        <th>City</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                    {%for row in data %}
+                                    <tr class="cell__header">
+                                        <td>{{ row['admin_id'] }}</td>
+                                        <td>{{ row['name'] }}</td>
+                                        <td>{{ row['password'] }}</td>
+                                        <td>{{ row['city'] }}</td>
+                                        <td>
+                                            <form method="post" action="{{ url_for('delete_admin', admin_id=row['admin_id']) }}">
+                                                <input type="submit" name="delete" value="Delete" class="delete_button">
+                                            </form>
+                                            <!-- <a method="post" href="{{ url_for('delete_admin', admin_id=row['admin_id']) }}">Delete</a> -->
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

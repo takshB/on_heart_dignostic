@@ -1,0 +1,138 @@
+<html>
+    <head>
+        <title>On heart Digonistic</title>
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/about_static.css')}}">
+    </head>
+
+    <body>
+        <div class="heading">
+            <div class="logo">
+                <img src="static/images/white_logo_crop.jpg"  class="mini_logo">
+            </div>
+
+            <div class="top_navigation">
+                <a href="{{ url_for('home_page')}}" class="about_top">About</a>
+                <a href="#Research" class="about_top">{{session.user}}Research</a>
+
+                {% if 'user' in session %}
+                    <a href="{{ url_for('check_up')}}" class="about_top">Checkup</a>
+                    <a href="{{ url_for('doctor')}}" class="about_top">Doctor</a>
+                {% elif 'admin' in session %}
+                    <a href="{{ url_for('check_up')}}" class="about_top">Checkup</a>
+                    <a href="{{ url_for('doctor')}}" class="about_top">Doctor</a>
+                    <a href="{{ url_for('dashboard')}}" class="about_top">Dashboard</a>
+                {% endif %}
+            </div>
+
+            <div class="login_logout">
+                <div class="login_header">
+                    {% if 'user' not in session and 'admin' not in session%}
+                        <a href="{{ url_for('user_type')}}">Login</a>
+                    {% endif %}
+                </div>
+                <div class="sign_up_header">
+                    <div class="sign_up_center">
+                        {% if 'user' not in session and 'admin' not in session %}
+                            <a href="{{ url_for('sign_up') }}">Sign up &#8599</a>
+                        {% else %}
+                            <a href="{{ url_for('log_out') }}">Log out &#8599</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="center_theme">
+            <div class="left_center">
+                <div class="left_content">
+                    <h1>On Heart Digonistic</h1>
+                    <h2>Check your Heart Health online in few seconds and get doctor Help if necessary 24x7 availability</h2>
+                    <div class="left_content_sign_up">
+                        {% if 'user' not in session and 'admin' not in session %}
+                            <a href="{{ url_for('sign_up') }}">Sign up &#8599</a>
+                        {% else %}
+                            <a href="{{ url_for('sign_up') }}">Check up</a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="right_center">
+                    <div class="right_photo">
+                        <img class="right_img" src="static/images/doctor_photo.png">
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="info_footer">
+            <div class="main_info">
+                <hr>
+                <div class="info_one">
+                    <h2>What is On Heart Digonistic ?</h2>
+                    <p>Our website is a user-friendly and innovative platform designed to help individuals 
+                        assess their risk of heart disease and provide them with convenient access to nearby 
+                        healthcare professionals. We understand the importance of early detection and timely 
+                        medical assistance when it comes to heart health, and our platform aims to make this 
+                        process easier and more efficient.</p>
+                    <p>Our website features an intuitive and user-friendly interface, ensuring that even those with limited technological experience can navigate and use our platform with ease. The heart disease prediction process is streamlined, and doctor search is made simple through a robust and responsive design.</p>
+                    <p>We are committed to continuous improvement and staying up-to-date with the latest advancements in medical research and technology. Our team of experts constantly refines the prediction algorithms and updates the doctor database to ensure the highest level of accuracy and relevance for our users.</p>
+                </div>
+                <div class="info_one_box">
+                    <div class="info_one_container">
+                        <img  class="info_one_img" src="static/images/together_hands.jpg">
+                    </div>
+                </div>
+                <div class="info_two">
+                    <h2>What is the Mission of this Website.</h2>
+                    <p>Our mission is to make heart disease prevention and access to quality healthcare more accessible and efficient for individuals worldwide. We believe that early detection and proactive medical care are crucial in reducing the burden of heart disease and improving overall well-being.</p>
+                    <p>Our website seeks to empower users to take control of their heart health by providing them with valuable insights into their risk of heart disease. With this information at hand, users can make informed decisions about lifestyle modifications, seek timely medical advice, and adopt preventive measures to promote a healthier life.</p>
+                    <p>Disclaimer: Our website's heart disease prediction tool is designed to provide general risk assessments and is not a substitute for professional medical advice. Users are encouraged to consult with qualified healthcare providers for personalized medical evaluations and guidance.</p>
+                </div>
+                <div class="info_two_box">
+                    <div class="info_two_container">
+                        <img class="info_two_img" src="static/images/doctors.png">
+                    </div>
+                </div>
+                <div class="info_three">
+                    <h3>Privacy and Security</h3>
+                    <p>At our website, we understand the critical importance of safeguarding user data and maintaining the highest standards of privacy and security. We are committed to earning and maintaining the trust of our users by implementing robust measures to protect their sensitive information.</p>
+                    <p>We prioritize user privacy and maintain the highest standards of data security. All user data is handled with utmost confidentiality and in compliance with relevant data protection regulations. We do not share any personal information with third parties without explicit user consent, ensuring a safe and trustworthy experience for our users.</p>
+                    <p>User data is stored in secure databases with restricted access. We follow best practices in data storage to prevent any unauthorized access or data breaches. Access to user data is strictly limited to authorized personnel only, and we regularly review and update access controls.</p>
+                </div>
+                <div class="info_three_box">
+                    <div class="info_three_container">
+                        <img class="info_three_img" src="static/images/privacy.jpg">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ending_theme">
+            <div style="margin-top: 23px;">
+                <div class="bg-primary" style="margin-top: 0px; height: 23px;"></div>
+                <div class="bg-primary" style="margin-top: 1px; height: 22px;"></div>
+                <div class="bg-primary" style="margin-top: 2px; height: 21px;"></div>
+                <div class="bg-primary" style="margin-top: 3px; height: 20px;"></div>
+                <div class="bg-primary" style="margin-top: 4px; height: 19px;"></div>
+                <div class="bg-primary" style="margin-top: 5px; height: 18px;"></div>
+                <div class="bg-primary" style="margin-top: 6px; height: 17px;"></div>
+                <div class="bg-primary" style="margin-top: 7px; height: 16px;"></div>
+                <div class="bg-primary" style="margin-top: 8px; height: 15px;"></div>
+                <div class="bg-primary" style="margin-top: 9px; height: 14px;"></div>
+                <div class="bg-primary" style="margin-top: 10px; height: 13px;"></div>
+                <div class="bg-primary" style="margin-top: 11px; height: 12px;"></div>
+                <div class="bg-primary" style="margin-top: 12px; height: 11px;"></div>
+                <div class="bg-primary" style="margin-top: 13px; height: 10px;"></div>
+                <div class="bg-primary" style="margin-top: 14px; height: 9px;"></div>
+                <div class="bg-primary" style="margin-top: 15px; height: 8px;"></div>
+                <div class="bg-primary" style="margin-top: 16px; height: 7px;"></div>
+                <div class="bg-primary" style="margin-top: 17px; height: 6px;"></div>
+                <div class="bg-primary" style="margin-top: 18px; height: 5px;"></div>
+                <div class="bg-primary" style="margin-top: 19px; height: 4px;"></div>
+                <div class="bg-primary" style="margin-top: 20px; height: 3px;"></div>
+                <div class="bg-primary" style="margin-top: 21px; height: 2px;"></div>
+                <div class="bg-primary" style="margin-top: 22px; height: 1px;"></div>
+                <div class="bg-primary" style="margin-top: 23px; height: 0px;"></div>
+            </div>
+        </div>
+    </body>
+</html>

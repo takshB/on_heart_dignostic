@@ -1,0 +1,72 @@
+body{
+    background-color: black;
+    margin: 0;
+    padding: 5% 10% 5% 10%;
+    color: white;
+
+    font-family: 'Helvetica';
+    font-weight: ultra-light;
+}
+
+.login_container{
+    height: 100%;
+    width: 100%; 
+}
+
+.mini_logo{
+    height: 120px;
+    width: 100%;
+    margin-top: 0px;
+    text-align: center;
+    overflow: hidden;
+}
+.logo{
+    height: 110px;
+    width: 110px;
+    object-fit: contain;
+}
+
+
+.main_name{
+    text-align: center;
+    margin-top: 0px;
+    height: 15%;
+    width: 100%;
+}
+
+.user_check_container{
+    display: flex;
+    height: 67.9%;
+    width: 40%;
+    margin-left: 30%;
+    margin-right: 30%;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.direction_box a{
+    width: 40%;
+    height: 50%;
+    border-radius: 25px;
+    border: 5px solid ee6c4d;
+    overflow: hidden;
+}
+.direction_box h2:hover{
+    font-size: 30px;
+}
+
+.direction_box h2{
+    margin-top: 5px;
+}
+.user_check_container a{
+    text-decoration: none;
+    color: white;
+}
+.direction_logo{
+    object-fit: contain;
+    margin-top: 0px;
+    height: 150px;
+}
+.direction_logo:hover{
+    scale: 1.2;
+}

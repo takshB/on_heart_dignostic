@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <title>Doctor</title>
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/doctor_static.css')}}">
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="heading">
+                <div class="logo">
+                    <img src="static/images/white_logo_crop.jpg"  class="mini_logo">
+                </div>
+
+                <div class="top_navigation">
+                    <a href="{{ url_for('home_page')}}" class="about_top">About</a>
+                    <a href="#Research" class="about_top">{{session.user}}Research</a>
+    
+                    {% if 'user' in session %}
+                        <a href="{{ url_for('check_up')}}" class="about_top">Checkup</a>
+                        <a href="{{ url_for('doctor')}}" class="about_top">Doctor</a>
+                    {% elif 'admin' in session %}
+                        <a href="{{ url_for('check_up')}}" class="about_top">Checkup</a>
+                        <a href="{{ url_for('doctor')}}" class="about_top">Doctor</a>
+                        <a href="{{ url_for('dashboard')}}" class="about_top">Dashboard</a>
+                    {% endif %}
+                </div>
+
+                <div class="login_logout">
+                    <div class="login_header">
+                        {% if 'user' not in session and 'admin' not in session%}
+                            <a href="{{ url_for('user_type')}}">Login</a>
+                        {% endif %}
+                    </div>
+                    <div class="sign_up_header">
+                        <div class="sign_up_center">
+                            {% if 'user' not in session and 'admin' not in session %}
+                                <a href="{{ url_for('sign_up') }}">Sign up &#8599</a>
+                            {% else %}
+                                <a href="{{ url_for('log_out') }}">Log out &#8599</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main_content">
+                <div class="main_head">
+                    <h1>Doctor Info</h1>
+                </div>
+                <div class="table_content">
+                    <table class="table">
+                        <tr clas="table__header">
+                            <th class="table__cell">ID</th>
+                            <th>Name</th>
+                            <th>City</th>
+                            <th>State</th>
+                            <th>Country</th>
+                            <th>Address</th>
+                            <th>Phone</th>
+                        </tr>
+                        {%for row in data %}
+                        <tr class="cell__header">
+                            {%for cell in row %}
+                            <td>{{ cell }}</td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

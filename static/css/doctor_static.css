@@ -1,0 +1,155 @@
+body{
+    background-color: red;
+    margin: 0;
+    padding: 0px;
+    font-family: 'Helvetica';
+    color: black;
+}
+
+
+.container{
+    display: flex;
+    height: auto;
+    width: 100vw;
+}
+
+
+.heading{
+    height: 70px;
+    z-index: 1;
+    display: flex;
+    background-color: black;
+    color: #e0fbfc;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    font-family: 'Helvetica';
+    font-weight: 100;
+}
+
+.logo{
+    width: 160px;
+    height: 100%;
+    overflow: hidden;
+    margin-left: -10px;
+}
+.logo img{
+    height: 80px;
+    width: 80px;
+    margin-top: -5px;
+    object-fit: contain;
+    
+}
+.mini_logo img{
+    height: 10px;
+    width: 10px;
+}
+.top_navigation{
+    width: 700px;
+    height: 32%;
+    overflow: hidden;
+    padding: 24px;
+    font-size: 20px;
+}
+
+.top_navigation a{
+    color: #e0fbfc;
+    text-decoration: none;
+    margin-right: 50px;
+}
+
+.about_top:hover{
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-position: under;  
+    color: #ee6c4d;
+}
+
+
+
+.login_logout{
+    height: 100%;
+    padding-left: 350px;
+    display: flex;
+    font-size: 20px;
+    overflow: hidden;
+}
+.login_header{
+    height: 32%;
+    width: 50px;
+    padding: 24px;
+}
+.login_header a{
+    color: #e0fbfc;
+    text-decoration: none;
+}
+.login_header:hover{
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-position: under;   
+    color:#ee6c4d; 
+    
+}
+.login_header a:hover{
+    color:#ee6c4d; 
+}
+
+
+.sign_up_center{
+    position: absolute;
+    margin-top: 20px;
+    width: 100px;
+    height: 29px;
+    border: 1.5px solid #293241;
+    padding-top: 4px;
+}
+.sign_up_center a{
+    color: #e0fbfc;
+    text-decoration: none;
+}
+.sign_up_center:hover{
+    /* background-color: #98c1d9; */
+    border: 1px solid white;
+    text-underline-position: under; 
+}
+.sign_up_center a:hover{
+    color:#ee6c4d;
+}
+
+
+
+
+
+
+.main_content{
+    margin-top: 9vh;
+    height: 91vh;
+    width: 100vw;
+    background-color: yellow;
+}
+.main_head{
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+}
+.table_content{
+    /* background-color: red; */
+    width: 90vw;
+    height: 70vh;
+    margin-left: 5vw;
+    overflow: scroll;
+}
+table, td, th{
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+.table tr:nth-child(even){
+    background-color: green;
+}
+.table__header{
+    text-align: left;
+    height: 5vh;
+}
+.table__cell{
+    padding: 8px;
+}

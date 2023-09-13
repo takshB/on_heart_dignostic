@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>Login Page</title>
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/login_static.css')}}">
+    </head>
+
+    <body>
+            <div class="login_center_container">
+                <div class="mini_logo">
+                    <img src="static/images/white_logo_crop.jpg"  class="logo">
+                </div>
+
+                <div class="main_page">
+                    <h1>{{ msg }}</h1>
+                    <div class="center_form">
+                        <form action="#" method="POST">
+                            <input type="text" id="name_id" name="name" placeholder="Name"><br/>
+                            <input type="password" id="password_id" name="password" placeholder="Password"><br/>
+                            <button id="btn_id">Submit</button>
+                        </form>
+                    </div>
+                    <div class="sign_up_form">
+                        <h2>Didn't have a Account?</h2>
+                        <a href="{{ url_for('sign_up') }}">Sign up</a>
+                    </div>
+                </div>
+            </div>
+    </body>
+</html>

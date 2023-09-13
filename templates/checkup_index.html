@@ -1,0 +1,217 @@
+<html>
+    <head>
+        <title>Check up</title>
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/checkup_static.css')}}">
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="heading">
+                <div class="logo">
+                    <img src="static/images/white_logo_crop.jpg"  class="mini_logo">
+                </div>
+    
+                <div class="top_navigation">
+                    <a href="{{ url_for('home_page')}}" class="about_top">About</a>
+                    <a href="#Research" class="about_top">{{session.user}}Research</a>
+    
+                    {% if 'user' in session %}
+                        <a href="{{ url_for('check_up')}}" class="about_top">Checkup</a>
+                        <a href="{{ url_for('doctor')}}" class="about_top">Doctor</a>
+                    {% elif 'admin' in session %}
+                        <a href="{{ url_for('check_up')}}" class="about_top">Checkup</a>
+                        <a href="{{ url_for('doctor')}}" class="about_top">Doctor</a>
+                        <a href="{{ url_for('dashboard')}}" class="about_top">Dashboard</a>
+                    {% endif %}
+                </div>
+    
+                <div class="login_logout">
+                    <div class="login_header">
+                        {% if 'user' not in session and 'admin' not in session%}
+                            <a href="{{ url_for('user_type')}}">Login</a>
+                        {% endif %}
+                    </div>
+                    <div class="sign_up_header">
+                        <div class="sign_up_center">
+                            {% if 'user' not in session and 'admin' not in session %}
+                                <a href="{{ url_for('sign_up') }}">Sign up &#8599</a>
+                            {% else %}
+                                <a href="{{ url_for('log_out') }}">Log out &#8599</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="main_content">
+                <div class="center_div">
+                    <div class="center_left">
+                        <div class="center_left_text">
+                            <h1>Heart Failure Diagnostic</h1>
+                        </div>
+                       <div class="main_left">
+                            <div class="center_left_img">
+                                <img src="static/images/heartdisease.png" class="center_img">
+                            </div>
+                       </div>
+                    </div>
+                    <div class="center_right">
+                        <form method="POST" action="#">
+                            <h1>{{ msg }}</h1>
+                            <div class="form-group">
+                                <input type="number" id="age_input" name="model_age" min="1" max="100" placeholder="Age">
+                            </div>
+                            <div class="form-group">
+                                <select id="sex_input" name="model_sex">
+                                    <option value="M">M</option>
+                                    <option value="F">F</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <select id="cp_input" name="model_cp">
+                                    <option value="0">typical angina</option>
+                                    <option value="1">atypical angina</option>
+                                    <option value="2">non-anginal pain</option>
+                                    <option value="3">asymptomatic</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="number" id="trestbps_input" name="model_trestbps" min="1" max="500" placeholder="blood pressure">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="number" id="chol_input" name="model_chol" min="1" max="500" placeholder="cholestoral"> 
+                            </div>
+
+                            <div class="form-group">
+                                <input type="number" id="fbs_input" name="model_fbs" min="1" max="500" placeholder="Enter something">
+                            </div>
+
+                            <div class="form-group">
+                                <select id="restecg_input" name="model_restecg">
+                                    <option value="0">Resting electrocardiographic Level 0</option>
+                                    <option value="1">Resting electrocardiographic Level 1</option>
+                                    <option value="2">Resting electrocardiographic Level 2</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="number" id="thalach_input" name="model_thalach" min="1" max="500" placeholder="Max heart rate">
+                            </div>
+
+                            <div class="form-group">
+                                <select id="exang_input" name="model_exang">
+                                    <option value="0">Exercise induced angina 0</option>
+                                    <option value="1">Exercise induced angina 1</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" id="oldpeak_input" name="model_oldpeak" placeholder="Float max 5.0">
+                            </div>
+
+                            <div class="form-group">
+                                <select id="slope_input" name="model_slope">
+                                    <option value="0">Slope 0</option>
+                                    <option value="1">Slope 1</option>
+                                    <option value="2">Slope 2</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <select id="ca_input" name="model_ca">
+                                    <option value="0">Number of major vessels colored by flourosopy 0</option>
+                                    <option value="1">Number of major vessels colored by flourosopy 1</option>
+                                    <option value="2">Number of major vessels colored by flourosopy 2</option>
+                                    <option value="3">Number of major vessels colored by flourosopy 3</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <select id="thal_input" name="model_thal">
+                                    <option value="0">Not there</option>
+                                    <option value="1">Normal</option>
+                                    <option value="2">fixed defect</option>
+                                    <option value="3">reversable defect</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <button id = "btn">Submit</button>  
+                            </div>
+                                <h1>{{ model_output }}</h1>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom_content">
+            <div class="center_content">
+                <div class="left_content">
+                    <h1>HEART<br>DISEASE</h1>
+                    <hr>
+                    <p>Together CVD resulted in 17.9 million deaths (32.1%) in 2015, up from 12.3 million (25.8%) in 1990. The term “heart disease” refers to several types of heart conditions. In the United States, the most common type of heart disease is coronary artery disease (CAD), which can lead to heart attack.</p>
+                </div>
+                <div class="right_content">
+                    <div class="right_container">
+                        <div class="right_circle">
+                            <div class="circle_center">
+                                <h1>&gt;</h1>
+                            </div>
+                        </div>
+
+                        <div class="main_left">
+                            <h1>Symptoms</h1>
+                            <p>
+                                1. Fever<br> 
+                                2. hortness of breath<br>
+                                3. Weakness or fatigue<br>
+                                4. Dry or persistent cough<br>
+                                5. Skin rashes or unusual spots<br>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="right_container">
+                        <div class="right_circle">
+                            <div class="circle_center">
+                                <h1>&gt;</h1>
+                            </div>
+                        </div>
+
+                        <div class="main_left">
+                            <h1>Prevention</h1>
+                            <p>
+                                1. Eat a healthy diet<br>
+                                2. Keep a healthy weight<br>
+                                3. avoid smoking and drinking<br>
+                                3. Maintain your blood sugar level<br>
+                                4. Keeps your body physically active<br>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="right_container">
+                        <div class="right_circle">
+                            <div class="circle_center">
+                                <h1>&gt;</h1>
+                            </div>
+                        </div>
+
+                        <div class="main_left">
+                            <h1>Treatment</h1>
+                            <p>
+                                1. CPR. Cardiopulmonary resuscitation<br>
+                                2. Angioplasty and Stents<br>
+                                3. Heart Bypass Surgery<br>
+                                4. Valve Disease Treatment<br>
+                                5. Cardioversion
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
