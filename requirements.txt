@@ -4,4 +4,4 @@ pandas==1.3.5
 regex==2023.8.8
 scikit-learn
 Pillow
-pickle
+pickle5
