@@ -213,10 +213,52 @@ def doctor():
     conn.close()
     return render_template('doctor_index.html', data=posts)
 
-@app.route('/dashboard', methods=["POST","GET"])
-def dashboard():
-    return render_template('dashboard_index.html')
 
+# customer dashboard Data
+@app.route('/user_dashboard', methods=["POST","GET"])
+def user_dashboard():
+    conn = sqlite3.connect("on_heart_db.db") 
+    conn.row_factory = sqlite3.Row
+    posts = conn.execute('SELECT * FROM customer').fetchall()
+    conn.close()
+    return render_template('user_dashboard_index.html', data=posts)
+
+@app.route('/cust_delete/<int:cust_id>', methods=['POST'])
+def delete_cust(cust_id):
+    conn = sqlite3.connect("on_heart_db.db") 
+    cur = conn.cursor()
+    cur.execute(f"delete from customer where cust_id = {cust_id}")
+    conn.commit()
+    return redirect(url_for('user_dashboard'))
+
+@app.route('/user_insert', methods=["POST","GET"])
+def user_insert():
+    if request.method == "POST":
+        if request.form['input_btn'] == 'Insert':
+            name = request.form.get('name')
+            password = request.form.get('password')
+            city = request.form.get('city')
+
+            conn = sqlite3.connect("on_heart_db.db") 
+            cur = conn.cursor()
+            query1 = f"INSERT INTO customer(name, password, city) VALUES ('{name}', '{password}', '{city}')"
+            cur.execute(query1)
+            conn.commit()
+            return redirect(url_for('user_dashboard'))
+        else:
+            id = request.form.get('user_id')
+            name = request.form.get('name')
+            password = request.form.get('password')
+            city = request.form.get('city')
+
+            conn = sqlite3.connect("on_heart_db.db") 
+            cur = conn.cursor()
+            query1 = f"update customer set name='{name}', password='{password}', city='{city}' where cust_id='{id}'"
+            cur.execute(query1)
+            conn.commit()
+            return redirect(url_for('user_dashboard'))
+
+# Admin dashboard Data
 @app.route('/admin_data', methods=["POST","GET"])
 def admin_data():
     conn = sqlite3.connect("on_heart_db.db") 
@@ -225,22 +267,92 @@ def admin_data():
     conn.close()
     return render_template('admin_data_index.html', data=posts)
 
-# @app.route('/delete/<string:id>', methods=["POST","GET"])
-# def delete_admin(id):
-#     conn = sqlite3.connect("on_heart_db.db") 
-#     cur = conn.cursor()
-#     cur.execute(f"delete from admin where id= {id}")
-#     conn.commit()
-#     return redirect(url_for('admin_data'))
-
 @app.route('/admin_delete/<int:admin_id>', methods=['POST'])
-
 def delete_admin(admin_id):
     conn = sqlite3.connect("on_heart_db.db") 
     cur = conn.cursor()
     cur.execute(f"delete from admin where admin_id = {admin_id}")
     conn.commit()
     return redirect(url_for('admin_data'))
+
+@app.route('/admin_insert', methods=["POST","GET"])
+def admin_insert():
+    if request.method == "POST":
+        if request.form['input_btn'] == 'Insert':
+            name = request.form.get('name')
+            password = request.form.get('password')
+            city = request.form.get('city')
+
+            conn = sqlite3.connect("on_heart_db.db") 
+            cur = conn.cursor()
+            query1 = f"INSERT INTO admin(name, password, city) VALUES ('{name}', '{password}', '{city}')"
+            cur.execute(query1)
+            conn.commit()
+            return redirect(url_for('admin_data'))
+        else:
+            id = request.form.get('Admin_id')
+            name = request.form.get('name')
+            password = request.form.get('password')
+            city = request.form.get('city')
+
+            conn = sqlite3.connect("on_heart_db.db") 
+            cur = conn.cursor()
+            query1 = f"update admin set name='{name}', password='{password}', city='{city}' where admin_id='{id}'"
+            cur.execute(query1)
+            conn.commit()
+            return redirect(url_for('admin_data'))
+
+
+
+
+
+@app.route('/doctor_data', methods=["POST","GET"])
+def doctor_data():
+    conn = sqlite3.connect("on_heart_db.db") 
+    conn.row_factory = sqlite3.Row
+    posts = conn.execute('SELECT * FROM doctor').fetchall()
+    conn.close()
+    return render_template('doctor_dashboard_index.html', data=posts)
+
+@app.route('/delete_doctor/<int:doctor_id>', methods=['POST'])
+def delete_doctor(doctor_id):
+    conn = sqlite3.connect("on_heart_db.db") 
+    cur = conn.cursor()
+    cur.execute(f"delete from doctor where doctor_id = {doctor_id}")
+    conn.commit()
+    return redirect(url_for('doctor_data'))
+
+@app.route('/doctor_insert', methods=["POST","GET"])
+def doctor_insert():
+    if request.method == "POST":
+        if request.form['input_btn'] == 'Insert':
+            name = request.form.get('name')
+            city = request.form.get('city')
+            state = request.form.get('state')
+            address = request.form.get('address')
+            phone_no = request.form.get('phone_no')
+
+            conn = sqlite3.connect("on_heart_db.db") 
+            cur = conn.cursor()
+            query1 = f"INSERT INTO doctor(name, city, state, address, phone_no) VALUES ('{name}', '{city}', '{state}', '{address}', '{phone_no}')"
+            cur.execute(query1)
+            conn.commit()
+            return redirect(url_for('doctor_data'))
+        else:
+            id = request.form.get('doctor_id')
+            name = request.form.get('name')
+            city = request.form.get('city')
+            state = request.form.get('state')
+            address = request.form.get('address')
+            phone_no = request.form.get('phone_no')
+
+            conn = sqlite3.connect("on_heart_db.db") 
+            cur = conn.cursor()
+            query1 = f"update doctor set name='{name}', city='{city}', state='{state}', address='{address}', phone_no='{phone_no}' where doctor_id='{id}'"
+            cur.execute(query1)
+            conn.commit()
+            return redirect(url_for('doctor_data'))
+
 
 
 if __name__ == '__main__':

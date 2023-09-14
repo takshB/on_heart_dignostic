@@ -1,10 +1,7 @@
 <html>
     <head>
-        <title>Admin Dashboard</title>
+        <title>Doctor</title>
         <link rel="stylesheet" href="{{ url_for('static',filename='css/dashboard_static.css')}}">
-
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     </head>
@@ -65,7 +62,7 @@
                                 <img class="right_img" src="static/images/customer.png">
                             </div>
                             <div class="small_text">
-                                <a href="{{ url_for('user_dashboard')}}">User</a>
+                                <a href="{{ url_for('user_dashboard') }}">User</a>
                             </div>
                         </div>
 
@@ -101,16 +98,16 @@
                 <div class="right_content">
                     <div class="main_content_right">
                         <div class="upper_content">
-                            <h1>ADMIN DASHBOARD</h1>
+                            <h1>USER DASHBOARD</h1>
                         </div>
                         
                         <div class="lower_content">
                             <div class="table_update">
                                 <div class="table_form">
                                     <div class="data_insert_form">
-                                        <form method="POST" action="{{ url_for('admin_insert')}}">
+                                        <form method="POST" action="{{ url_for('user_insert')}}">
                                             <div class="data_insert_block">
-                                                <input type="text" name="Admin_id" placeholder="Admin_id">
+                                                <input type="text" name="user_id" placeholder="user_id">
                                             </div>
                                             <div class="data_insert_block">
                                                 <input type="text" name="name" placeholder="Name">
@@ -134,7 +131,7 @@
                             <div class="table_content">
                                 <table class="table" style="width:90%">
                                     <tr clas="table__header">
-                                        <th class="table__cell">Admin_id</th>
+                                        <th class="table__cell">Cust_id</th>
                                         <th>Name</th>
                                         <th>Password</th>
                                         <th>City</th>
@@ -142,13 +139,13 @@
                                     </tr>
                                     {%for row in data %}
                                     <tr class="cell__header">
-                                        <td>{{ row['admin_id'] }}</td>
+                                        <td>{{ row['cust_id'] }}</td>
                                         <td>{{ row['name'] }}</td>
                                         <td>{{ row['password'] }}</td>
                                         <td>{{ row['city'] }}</td>
                                         <td>
                                             <div class="delete_container">
-                                                <form class="delete_form" method="post" action="{{ url_for('delete_admin', admin_id=row['admin_id']) }}">
+                                                <form class="delete_form" method="post" action="{{ url_for('delete_cust', cust_id=row['cust_id']) }}">
                                                     <input class="material-icons" type="submit" name="delete" value=&#xe872;>
                                                 </form>
                                             </div>

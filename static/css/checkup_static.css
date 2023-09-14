@@ -232,11 +232,20 @@ body{
     width: 7vw;
     height: 4vh;
     color: white;
+    background-color: #ee6c4d;
     border: 1px solid white;
     border-radius: 5px;
     font-size: 15px;
 }
-
+.form-group input:hover{
+    border: 1px solid #ee6c4d;
+}
+.form-group select:hover{
+    border: 1px solid #ee6c4d;
+}
+.form-group button:hover{
+    background-color: red;
+}
 
 
 
@@ -327,3 +336,4 @@ body{
     font-size: 18px;
     color: rgb(191, 188, 188);
 }
+

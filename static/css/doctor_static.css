@@ -127,6 +127,11 @@ body{
     width: 100vw;
     background-color: yellow;
 }
+.main_content hr{
+    margin-left: 10vh;
+    margin-right: 10vh;
+    border: 1px solid black;
+}
 .main_head{
     display: flex;
     justify-content: center;
@@ -142,9 +147,7 @@ body{
 table, td, th{
     border-collapse: collapse;
     border: 1px solid black;
-}
-.table tr:nth-child(even){
-    background-color: green;
+    font-size: 20px;
 }
 .table__header{
     text-align: left;

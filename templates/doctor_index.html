@@ -21,7 +21,7 @@
                     {% elif 'admin' in session %}
                         <a href="{{ url_for('check_up')}}" class="about_top">Checkup</a>
                         <a href="{{ url_for('doctor')}}" class="about_top">Doctor</a>
-                        <a href="{{ url_for('dashboard')}}" class="about_top">Dashboard</a>
+                        <a href="{{ url_for('user_dashboard')}}" class="about_top">Dashboard</a>
                     {% endif %}
                 </div>
 
@@ -47,8 +47,10 @@
                 <div class="main_head">
                     <h1>Doctor Info</h1>
                 </div>
+                <hr>
+                <br>
                 <div class="table_content">
-                    <table class="table">
+                    <table class="table" style="width:90%">
                         <tr clas="table__header">
                             <th class="table__cell">ID</th>
                             <th>Name</th>

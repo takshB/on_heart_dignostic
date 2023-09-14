@@ -20,7 +20,7 @@
                 {% elif 'admin' in session %}
                     <a href="{{ url_for('check_up')}}" class="about_top">Checkup</a>
                     <a href="{{ url_for('doctor')}}" class="about_top">Doctor</a>
-                    <a href="{{ url_for('dashboard')}}" class="about_top">Dashboard</a>
+                    <a href="{{ url_for('user_dashboard')}}" class="about_top">Dashboard</a>
                 {% endif %}
             </div>
 
@@ -51,7 +51,7 @@
                         {% if 'user' not in session and 'admin' not in session %}
                             <a href="{{ url_for('sign_up') }}">Sign up &#8599</a>
                         {% else %}
-                            <a href="{{ url_for('sign_up') }}">Check up</a>
+                            <a href="{{ url_for('check_up') }}">Check up</a>
                         {% endif %}
                     </div>
                 </div>
