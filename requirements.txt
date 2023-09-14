@@ -2,7 +2,7 @@ Flask==2.2.5
 keras==2.2.5
 pandas==1.3.5
 regex==2023.8.8
-Python==3.9.16
-scikit-learn==1.2.2
-Pillow==9.4.0
-pickle==4.0
+Python
+scikit-learn
+Pillow
+pickle
